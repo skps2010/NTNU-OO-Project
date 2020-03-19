@@ -1,13 +1,15 @@
 public class Circle extends Shape {
     private double radius;
-    private double pi=3.1415926;
-    public Circle (double _radius){
-        radius=_radius;
+
+    public Circle(double radius) {
+        this.radius = radius;
     }
-    public double Area(){
-        return pi*radius*radius;
+
+    public double area() {
+        return Math.PI * radius * radius;
     }
-    public String printParas(){
-        return String.format("radius=%.3f\t",radius);
+
+    public String printParas() {
+        return String.format("radius=%.3f\t", radius);
     }
 }
