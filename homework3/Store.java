@@ -8,7 +8,7 @@ public class Store {
             "讓子彈飛", "邁向共和", "我不是藥神", "迷宮", "嚴冬", "飢餓遊戲", "戰爭與和平", "我的奮鬥" };
     final String customerNames[] = { "耶和華", "霍去病", "諸葛亮", "雅博拉罕", "陳吉思涵", "雅莉姍大", "凱薩大帝", "索羅門", "威爾遜", "毛澤東" };
     Random r = new Random();
-    public static LinkedList<Rental> rentalRecord = new LinkedList<Rental>();
+    LinkedList<Rental> rentalRecord = new LinkedList<Rental>();
     int earning = 0;
 
     public Store() {
@@ -18,13 +18,13 @@ public class Store {
         for (int i = 0; i < 10; i++) {
             switch (r.nextInt(3)) {
                 case 0:
-                    customers[i] = new Breezy(customerNames[i]);
+                    customers[i] = new Breezy(customerNames[i], this);
                     break;
                 case 1:
-                    customers[i] = new Hoarder(customerNames[i]);
+                    customers[i] = new Hoarder(customerNames[i], this);
                     break;
                 case 2:
-                    customers[i] = new Regular(customerNames[i]);
+                    customers[i] = new Regular(customerNames[i], this);
                     break;
             }
 
@@ -33,7 +33,7 @@ public class Store {
 
     public void everyday(int day) {
         for (Customer c : customers)
-            earning += c.createRental(day, videos);
+            earning += c.createRental(day);
         for (Customer c : customers)
             c.returnRental(day, videos);
     }

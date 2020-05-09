@@ -5,20 +5,21 @@ public abstract class Customer {
     String name;
     LinkedList<Rental> rentals = new LinkedList<Rental>();
     Random r = new Random();
-    final static String names[] = { "", "" };
+    Store store;
 
-    public Customer(String n) {
+    public Customer(String n, Store s) {
         name = n;
+        store = s;
     }
 
-    abstract public int createRental(int day, LinkedList<Video> videos);
+    abstract public int createRental(int day);
 
-    protected int putRental(int day, int time, int count, LinkedList<Video> videos) {
+    protected int putRental(int day, int time, int count) {
         Video v[] = new Video[count];
         for (int i = 0; i < count; i++) {
-            int index = r.nextInt(videos.size());
-            v[i] = videos.get(index);
-            videos.remove(index);
+            int index = r.nextInt(store.videos.size());
+            v[i] = store.videos.get(index);
+            store.videos.remove(index);
         }
 
         Rental r = new Rental(day, time, this, v);
@@ -35,7 +36,7 @@ public abstract class Customer {
                 for (Video v : first.videos)
                     videos.add(v);
 
-                Store.rentalRecord.add(first);
+                store.rentalRecord.add(first);
             } else
                 break;
 
