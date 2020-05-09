@@ -28,13 +28,13 @@ public abstract class Customer {
         return r.totalePrice();
     }
 
-    public void returnRental(int day, LinkedList<Video> videos) {
+    public void returnRental(int day) {
         while (!rentals.isEmpty()) {
             Rental first = rentals.getFirst();
             if (first.start + first.time <= day) {
                 rentals.removeFirst();
                 for (Video v : first.videos)
-                    videos.add(v);
+                    store.videos.add(v);
 
                 store.rentalRecord.add(first);
             } else

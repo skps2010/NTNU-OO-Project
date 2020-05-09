@@ -35,7 +35,7 @@ public class Store {
         for (Customer c : customers)
             earning += c.createRental(day);
         for (Customer c : customers)
-            c.returnRental(day, videos);
+            c.returnRental(day);
     }
 
     public void report() {
